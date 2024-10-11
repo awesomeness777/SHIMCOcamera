@@ -36,6 +36,7 @@ ax_top = fig.add_subplot(grid[0, :2])
 ax_top.plot(np.linspace(-1, 1, 1024), x_hist_values,color = 'red')
 ax_top.set_title('X Intensity')
 ax_top.set_xlabel('X')
+ax_top.set_xlim(-1,1)
 ax_top.set_ylabel('Intensity')
 
 # Add the y histogram to the right of the heatmap
@@ -44,6 +45,7 @@ ax_right.plot(y_hist_values, np.linspace(-1, 1, 1024), color = 'red')
 ax_right.set_title('Y Intensity')
 ax_right.set_xlabel('Intensity')
 ax_right.set_ylabel('Y')
+ax_right.set_ylim(-1,1)
 
 # Show the combined figure
 plt.show()
