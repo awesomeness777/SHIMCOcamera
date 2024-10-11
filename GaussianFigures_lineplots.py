@@ -3,22 +3,22 @@ import matplotlib.pyplot as plt
 
 # Define Gaussian function
 sigma = 5
-x, y = np.meshgrid(np.linspace(-1, 1, 100), np.linspace(-1, 1, 100))
+x, y = np.meshgrid(np.linspace(-1, 1, 1024), np.linspace(-1, 1, 1024))
 gaussian = np.exp(-(x**2 + y**2) / (2 * sigma**2))
 
 # Create the histogram values for y
 y_hist_values = []
-for j in range(100):
+for j in range(1024):
     y_sum = 0
-    for i in range(100):
+    for i in range(1024):
         y_sum += gaussian[i, j]
     y_hist_values.append(y_sum)
 
 # Create the histogram values for x
 x_hist_values = []
-for j in range(100):
+for j in range(1024):
     x_sum = 0
-    for i in range(100):
+    for i in range(1024):
         x_sum += gaussian[j, i]
     x_hist_values.append(x_sum)
 
@@ -33,14 +33,14 @@ ax_center.set_title('Gaussian Heatmap')
 
 # Add the x histogram on top of the heatmap
 ax_top = fig.add_subplot(grid[0, :2])
-ax_top.plot(np.linspace(1, 100, 100), x_hist_values,color = 'red')
+ax_top.plot(np.linspace(-1, 1, 1024), x_hist_values,color = 'red')
 ax_top.set_title('X Intensity')
 ax_top.set_xlabel('X')
 ax_top.set_ylabel('Intensity')
 
 # Add the y histogram to the right of the heatmap
 ax_right = fig.add_subplot(grid[1:, 2])
-ax_right.plot(y_hist_values, np.linspace(1, 100, 100), color = 'red')
+ax_right.plot(y_hist_values, np.linspace(-1, 1, 1024), color = 'red')
 ax_right.set_title('Y Intensity')
 ax_right.set_xlabel('Intensity')
 ax_right.set_ylabel('Y')
