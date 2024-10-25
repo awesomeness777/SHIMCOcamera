@@ -1,0 +1,794 @@
+"cam/camera_attributes/ADC Analog Gain"	High
+"cam/camera_attributes/ADC Bit Depth"	16
+"cam/camera_attributes/ADC Speed"	2.000000000000E+00
+"cam/camera_attributes/Active Bottom Margin"	8
+"cam/camera_attributes/Active Height"	1024
+"cam/camera_attributes/Active Left Margin"	24
+"cam/camera_attributes/Active Right Margin"	24
+"cam/camera_attributes/Active Top Margin"	0
+"cam/camera_attributes/Active Width"	1024
+"cam/camera_attributes/CCD Characteristics"	Back Illuminated
+"cam/camera_attributes/Clean Cycle Count"	1
+"cam/camera_attributes/Clean Cycle Height"	1024
+"cam/camera_attributes/Clean Section Final Height"	4
+"cam/camera_attributes/Clean Section Final Height Count"	250
+"cam/camera_attributes/Clean Serial Register"	True
+"cam/camera_attributes/Clean Until Trigger"	True
+"cam/camera_attributes/Disable Data Formatting"	False
+"cam/camera_attributes/Exact Readout Count Maximum"	65534
+"cam/camera_attributes/Exposure Time"	9.999990000000E+01
+"cam/camera_attributes/Frame Rate Calculation"	1.448846062931E+00
+"cam/camera_attributes/Frame Size"	2097152
+"cam/camera_attributes/Frame Stride"	2097152
+"cam/camera_attributes/Frame Tracking Bit Depth"	64
+"cam/camera_attributes/Frames per Readout"	1
+"cam/camera_attributes/Gap Height"	0.000000000000E+00
+"cam/camera_attributes/Gap Width"	0.000000000000E+00
+"cam/camera_attributes/Kinetics Window Height"	10
+"cam/camera_attributes/Online Readout Rate Calculation"	1.694327839391E+00
+cam/camera_attributes/Orientation	Normal
+"cam/camera_attributes/Output Signal"	Shutter Open
+"cam/camera_attributes/Pixel Bit Depth"	16
+"cam/camera_attributes/Pixel Format"	Monochrome 16-bit
+"cam/camera_attributes/Pixel Height"	1.300000000000E+01
+"cam/camera_attributes/Pixel Width"	1.300000000000E+01
+cam/camera_attributes/ROIs	[(0, 1024, 1, 0, 1024, 1)]
+"cam/camera_attributes/Readout Control Mode"	Full Frame
+"cam/camera_attributes/Readout Count"	0
+"cam/camera_attributes/Readout Orientation"	Normal
+"cam/camera_attributes/Readout Rate Calculation"	1.448846062931E+00
+"cam/camera_attributes/Readout Stride"	2097152
+"cam/camera_attributes/Readout Time Calculation"	5.822045500000E+02
+"cam/camera_attributes/Sensor Active Bottom Margin"	8
+"cam/camera_attributes/Sensor Active Extended Height"	0
+"cam/camera_attributes/Sensor Active Height"	1024
+"cam/camera_attributes/Sensor Active Left Margin"	24
+"cam/camera_attributes/Sensor Active Right Margin"	24
+"cam/camera_attributes/Sensor Active Top Margin"	0
+"cam/camera_attributes/Sensor Active Width"	1024
+"cam/camera_attributes/Sensor Masked Bottom Margin"	0
+"cam/camera_attributes/Sensor Masked Height"	0
+"cam/camera_attributes/Sensor Masked Top Margin"	0
+"cam/camera_attributes/Sensor Secondary Active Height"	0
+"cam/camera_attributes/Sensor Secondary Masked Height"	0
+"cam/camera_attributes/Sensor Temperature Reading"	-7.000000000000E+01
+"cam/camera_attributes/Sensor Temperature Set Point"	-7.000000000000E+01
+"cam/camera_attributes/Sensor Temperature Status"	Locked
+"cam/camera_attributes/Sensor Type"	CCD
+"cam/camera_attributes/Shutter Closing Delay"	8.000000000000E+00
+"cam/camera_attributes/Shutter Delay Resolution"	1.000000000000E+03
+"cam/camera_attributes/Shutter Timing Mode"	Normal
+"cam/camera_attributes/Time Stamp Bit Depth"	64
+"cam/camera_attributes/Time Stamp Resolution"	10000000
+"cam/camera_attributes/Time Stamps"	"None"
+"cam/camera_attributes/Track Frames"	False
+"cam/camera_attributes/Trigger Determination"	Negative Polarity
+"cam/camera_attributes/Trigger Response"	No Response
+"cam/camera_attributes/Vertical Shift Rate"	3.020000000000E+01
+cam/cnt/acquired	0
+cam/cnt/buffer_filled	0
+cam/cnt/fps	0
+cam/cnt/last_idx	0
+cam/cnt/read	0
+cam/cnt_after/acquired	10
+cam/cnt_after/buffer_filled	1
+cam/cnt_after/fps	9.861414147494E-01
+cam/cnt_after/last_idx	9
+cam/cnt_after/read	10
+cam/acquired_frames	14
+cam/acquisition_in_progress	0
+cam/buffer_size	100
+cam/cls	PicamCamera
+cam/conn	"0809080002"
+cam/data_dimensions	(1024, 1024)
+cam/detector_size	(1024, 1024)
+cam/device_info	("E2V 1024 x 1024 (CCD 47-10)(B)", "0809080002", "PIXIS: 1024B", "USB 2.0")
+cam/exposure	9.999990000000E-02
+cam/frame_format	list
+cam/frame_info_fields	["frame_index", "timestamp_start", "timestamp_end", "framestamp"]
+cam/frame_info_format	array
+cam/frame_info_period	1
+cam/frame_period	6.902044500000E-01
+cam/frame_timings	(9.999990000000E-02, 6.902044500000E-01)
+cam/frames_status	(14, 0, 0, 100)
+cam/image_indexing	rct
+cam/metadata_enabled	False
+cam/pixel_size	(1.300000000000E-05, 1.300000000000E-05)
+cam/roi	(0, 1024, 0, 1024, 1, 1)
+cam/roi_limits	((1, 1024, 1, 1, 1024), (1, 1024, 1, 1, 1024))
+cfg/cameras/picam_0/params/serial_number	"0809080002"
+cfg/cameras/picam_0/display_name	PIXIS: 1024B 0809080002
+cfg/cameras/picam_0/kind	Picam
+cfg/dlls/picam	C:\Program Files\Princeton Instruments\PICam\Runtime\
+cfg/info/version	2.2.1
+cfg/plugins/filt/parameters/caption	Filter
+cfg/plugins/filt/class	filter
+cfg/plugins/trigsave/class	trigger_save
+cfg/runtime/root_folder	C:\Program Files\Princeton Instruments\PICam\cam-control\cam-control
+cfg/runtime/settings_src	C:\Program Files\Princeton Instruments\PICam\cam-control\cam-control\settings.cfg
+cfg/select_camera	picam_0
+gui/activity_indicator/camera/acquisition	Acq
+gui/activity_indicator/camera/connection	Con
+gui/activity_indicator/processing/background	Bg
+gui/activity_indicator/processing/binning	Bin
+gui/activity_indicator/processing/filter.filt	Fil
+gui/activity_indicator/saving/streaming	Sav
+gui/activity_indicator/saving/trigger_save.trigsave	Trg
+"gui/cam/cam/attributes_window/p_autoset/ADC Analog Gain"	never
+"gui/cam/cam/attributes_window/p_autoset/ADC Bit Depth"	never
+"gui/cam/cam/attributes_window/p_autoset/ADC Speed"	never
+"gui/cam/cam/attributes_window/p_autoset/Active Bottom Margin"	never
+"gui/cam/cam/attributes_window/p_autoset/Active Height"	never
+"gui/cam/cam/attributes_window/p_autoset/Active Left Margin"	never
+"gui/cam/cam/attributes_window/p_autoset/Active Right Margin"	never
+"gui/cam/cam/attributes_window/p_autoset/Active Top Margin"	never
+"gui/cam/cam/attributes_window/p_autoset/Active Width"	never
+"gui/cam/cam/attributes_window/p_autoset/Clean Cycle Count"	never
+"gui/cam/cam/attributes_window/p_autoset/Clean Cycle Height"	never
+"gui/cam/cam/attributes_window/p_autoset/Clean Section Final Height"	never
+"gui/cam/cam/attributes_window/p_autoset/Clean Section Final Height Count"	never
+"gui/cam/cam/attributes_window/p_autoset/Clean Serial Register"	never
+"gui/cam/cam/attributes_window/p_autoset/Clean Until Trigger"	never
+"gui/cam/cam/attributes_window/p_autoset/Disable Data Formatting"	never
+"gui/cam/cam/attributes_window/p_autoset/Exposure Time"	never
+"gui/cam/cam/attributes_window/p_autoset/Frame Tracking Bit Depth"	never
+"gui/cam/cam/attributes_window/p_autoset/Kinetics Window Height"	never
+"gui/cam/cam/attributes_window/p_autoset/Output Signal"	never
+"gui/cam/cam/attributes_window/p_autoset/Pixel Format"	never
+"gui/cam/cam/attributes_window/p_autoset/Readout Control Mode"	never
+"gui/cam/cam/attributes_window/p_autoset/Readout Count"	never
+"gui/cam/cam/attributes_window/p_autoset/Sensor Temperature Set Point"	never
+"gui/cam/cam/attributes_window/p_autoset/Shutter Closing Delay"	never
+"gui/cam/cam/attributes_window/p_autoset/Shutter Delay Resolution"	never
+"gui/cam/cam/attributes_window/p_autoset/Shutter Timing Mode"	never
+"gui/cam/cam/attributes_window/p_autoset/Time Stamp Bit Depth"	never
+"gui/cam/cam/attributes_window/p_autoset/Time Stamp Resolution"	never
+"gui/cam/cam/attributes_window/p_autoset/Time Stamps"	never
+"gui/cam/cam/attributes_window/p_autoset/Track Frames"	never
+"gui/cam/cam/attributes_window/p_autoset/Trigger Determination"	never
+"gui/cam/cam/attributes_window/p_autoset/Trigger Response"	never
+"gui/cam/cam/attributes_window/p_autoset/Vertical Shift Rate"	never
+"gui/cam/cam/attributes_window/p_pause/ADC Analog Gain"	clear
+"gui/cam/cam/attributes_window/p_pause/ADC Bit Depth"	clear
+"gui/cam/cam/attributes_window/p_pause/ADC Speed"	clear
+"gui/cam/cam/attributes_window/p_pause/Active Bottom Margin"	clear
+"gui/cam/cam/attributes_window/p_pause/Active Height"	clear
+"gui/cam/cam/attributes_window/p_pause/Active Left Margin"	clear
+"gui/cam/cam/attributes_window/p_pause/Active Right Margin"	clear
+"gui/cam/cam/attributes_window/p_pause/Active Top Margin"	clear
+"gui/cam/cam/attributes_window/p_pause/Active Width"	clear
+"gui/cam/cam/attributes_window/p_pause/Clean Cycle Count"	clear
+"gui/cam/cam/attributes_window/p_pause/Clean Cycle Height"	clear
+"gui/cam/cam/attributes_window/p_pause/Clean Section Final Height"	clear
+"gui/cam/cam/attributes_window/p_pause/Clean Section Final Height Count"	clear
+"gui/cam/cam/attributes_window/p_pause/Clean Serial Register"	clear
+"gui/cam/cam/attributes_window/p_pause/Clean Until Trigger"	clear
+"gui/cam/cam/attributes_window/p_pause/Disable Data Formatting"	clear
+"gui/cam/cam/attributes_window/p_pause/Exposure Time"	clear
+"gui/cam/cam/attributes_window/p_pause/Frame Tracking Bit Depth"	clear
+"gui/cam/cam/attributes_window/p_pause/Kinetics Window Height"	clear
+"gui/cam/cam/attributes_window/p_pause/Output Signal"	clear
+"gui/cam/cam/attributes_window/p_pause/Pixel Format"	clear
+"gui/cam/cam/attributes_window/p_pause/Readout Control Mode"	clear
+"gui/cam/cam/attributes_window/p_pause/Readout Count"	clear
+"gui/cam/cam/attributes_window/p_pause/Sensor Temperature Set Point"	clear
+"gui/cam/cam/attributes_window/p_pause/Shutter Closing Delay"	clear
+"gui/cam/cam/attributes_window/p_pause/Shutter Delay Resolution"	clear
+"gui/cam/cam/attributes_window/p_pause/Shutter Timing Mode"	clear
+"gui/cam/cam/attributes_window/p_pause/Time Stamp Bit Depth"	clear
+"gui/cam/cam/attributes_window/p_pause/Time Stamp Resolution"	clear
+"gui/cam/cam/attributes_window/p_pause/Time Stamps"	clear
+"gui/cam/cam/attributes_window/p_pause/Track Frames"	clear
+"gui/cam/cam/attributes_window/p_pause/Trigger Determination"	clear
+"gui/cam/cam/attributes_window/p_pause/Trigger Response"	clear
+"gui/cam/cam/attributes_window/p_pause/Vertical Shift Rate"	clear
+"gui/cam/cam/attributes_window/p_quick/ADC Analog Gain"	False
+"gui/cam/cam/attributes_window/p_quick/ADC Bit Depth"	False
+"gui/cam/cam/attributes_window/p_quick/ADC Speed"	False
+"gui/cam/cam/attributes_window/p_quick/Active Bottom Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Active Height"	False
+"gui/cam/cam/attributes_window/p_quick/Active Left Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Active Right Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Active Top Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Active Width"	False
+"gui/cam/cam/attributes_window/p_quick/CCD Characteristics"	False
+"gui/cam/cam/attributes_window/p_quick/Clean Cycle Count"	False
+"gui/cam/cam/attributes_window/p_quick/Clean Cycle Height"	False
+"gui/cam/cam/attributes_window/p_quick/Clean Section Final Height"	False
+"gui/cam/cam/attributes_window/p_quick/Clean Section Final Height Count"	False
+"gui/cam/cam/attributes_window/p_quick/Clean Serial Register"	False
+"gui/cam/cam/attributes_window/p_quick/Clean Until Trigger"	False
+"gui/cam/cam/attributes_window/p_quick/Disable Data Formatting"	False
+"gui/cam/cam/attributes_window/p_quick/Exact Readout Count Maximum"	False
+"gui/cam/cam/attributes_window/p_quick/Exposure Time"	False
+"gui/cam/cam/attributes_window/p_quick/Frame Rate Calculation"	False
+"gui/cam/cam/attributes_window/p_quick/Frame Size"	False
+"gui/cam/cam/attributes_window/p_quick/Frame Stride"	False
+"gui/cam/cam/attributes_window/p_quick/Frame Tracking Bit Depth"	False
+"gui/cam/cam/attributes_window/p_quick/Frames per Readout"	False
+"gui/cam/cam/attributes_window/p_quick/Gap Height"	False
+"gui/cam/cam/attributes_window/p_quick/Gap Width"	False
+"gui/cam/cam/attributes_window/p_quick/Kinetics Window Height"	False
+"gui/cam/cam/attributes_window/p_quick/Online Readout Rate Calculation"	False
+gui/cam/cam/attributes_window/p_quick/Orientation	False
+"gui/cam/cam/attributes_window/p_quick/Output Signal"	False
+"gui/cam/cam/attributes_window/p_quick/Pixel Bit Depth"	False
+"gui/cam/cam/attributes_window/p_quick/Pixel Format"	False
+"gui/cam/cam/attributes_window/p_quick/Pixel Height"	False
+"gui/cam/cam/attributes_window/p_quick/Pixel Width"	False
+"gui/cam/cam/attributes_window/p_quick/Readout Control Mode"	False
+"gui/cam/cam/attributes_window/p_quick/Readout Count"	False
+"gui/cam/cam/attributes_window/p_quick/Readout Orientation"	False
+"gui/cam/cam/attributes_window/p_quick/Readout Rate Calculation"	False
+"gui/cam/cam/attributes_window/p_quick/Readout Stride"	False
+"gui/cam/cam/attributes_window/p_quick/Readout Time Calculation"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Active Bottom Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Active Extended Height"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Active Height"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Active Left Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Active Right Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Active Top Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Active Width"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Masked Bottom Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Masked Height"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Masked Top Margin"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Secondary Active Height"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Secondary Masked Height"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Temperature Reading"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Temperature Set Point"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Temperature Status"	False
+"gui/cam/cam/attributes_window/p_quick/Sensor Type"	False
+"gui/cam/cam/attributes_window/p_quick/Shutter Closing Delay"	False
+"gui/cam/cam/attributes_window/p_quick/Shutter Delay Resolution"	False
+"gui/cam/cam/attributes_window/p_quick/Shutter Timing Mode"	False
+"gui/cam/cam/attributes_window/p_quick/Time Stamp Bit Depth"	False
+"gui/cam/cam/attributes_window/p_quick/Time Stamp Resolution"	False
+"gui/cam/cam/attributes_window/p_quick/Time Stamps"	False
+"gui/cam/cam/attributes_window/p_quick/Track Frames"	False
+"gui/cam/cam/attributes_window/p_quick/Trigger Determination"	False
+"gui/cam/cam/attributes_window/p_quick/Trigger Response"	False
+"gui/cam/cam/attributes_window/p_quick/Vertical Shift Rate"	False
+"gui/cam/cam/attributes_window/s/ADC Analog Gain"	False
+"gui/cam/cam/attributes_window/s/ADC Bit Depth"	False
+"gui/cam/cam/attributes_window/s/ADC Speed"	False
+"gui/cam/cam/attributes_window/s/Active Bottom Margin"	False
+"gui/cam/cam/attributes_window/s/Active Height"	False
+"gui/cam/cam/attributes_window/s/Active Left Margin"	False
+"gui/cam/cam/attributes_window/s/Active Right Margin"	False
+"gui/cam/cam/attributes_window/s/Active Top Margin"	False
+"gui/cam/cam/attributes_window/s/Active Width"	False
+"gui/cam/cam/attributes_window/s/Clean Cycle Count"	False
+"gui/cam/cam/attributes_window/s/Clean Cycle Height"	False
+"gui/cam/cam/attributes_window/s/Clean Section Final Height"	False
+"gui/cam/cam/attributes_window/s/Clean Section Final Height Count"	False
+"gui/cam/cam/attributes_window/s/Clean Serial Register"	False
+"gui/cam/cam/attributes_window/s/Clean Until Trigger"	False
+"gui/cam/cam/attributes_window/s/Disable Data Formatting"	False
+"gui/cam/cam/attributes_window/s/Exposure Time"	False
+"gui/cam/cam/attributes_window/s/Frame Tracking Bit Depth"	False
+"gui/cam/cam/attributes_window/s/Kinetics Window Height"	False
+"gui/cam/cam/attributes_window/s/Output Signal"	False
+"gui/cam/cam/attributes_window/s/Pixel Format"	False
+"gui/cam/cam/attributes_window/s/Readout Control Mode"	False
+"gui/cam/cam/attributes_window/s/Readout Count"	False
+"gui/cam/cam/attributes_window/s/Sensor Temperature Set Point"	False
+"gui/cam/cam/attributes_window/s/Shutter Closing Delay"	False
+"gui/cam/cam/attributes_window/s/Shutter Delay Resolution"	False
+"gui/cam/cam/attributes_window/s/Shutter Timing Mode"	False
+"gui/cam/cam/attributes_window/s/Time Stamp Bit Depth"	False
+"gui/cam/cam/attributes_window/s/Time Stamp Resolution"	False
+"gui/cam/cam/attributes_window/s/Time Stamps"	False
+"gui/cam/cam/attributes_window/s/Track Frames"	False
+"gui/cam/cam/attributes_window/s/Trigger Determination"	False
+"gui/cam/cam/attributes_window/s/Trigger Response"	False
+"gui/cam/cam/attributes_window/s/Vertical Shift Rate"	False
+"gui/cam/cam/attributes_window/v/ADC Analog Gain"	-1
+"gui/cam/cam/attributes_window/v/ADC Bit Depth"	16
+"gui/cam/cam/attributes_window/v/ADC Speed"	2.000000000000E+00
+"gui/cam/cam/attributes_window/v/Active Bottom Margin"	8
+"gui/cam/cam/attributes_window/v/Active Height"	1024
+"gui/cam/cam/attributes_window/v/Active Left Margin"	24
+"gui/cam/cam/attributes_window/v/Active Right Margin"	24
+"gui/cam/cam/attributes_window/v/Active Top Margin"	0
+"gui/cam/cam/attributes_window/v/Active Width"	1024
+"gui/cam/cam/attributes_window/v/CCD Characteristics"	0
+"gui/cam/cam/attributes_window/v/Clean Cycle Count"	1
+"gui/cam/cam/attributes_window/v/Clean Cycle Height"	1024
+"gui/cam/cam/attributes_window/v/Clean Section Final Height"	4
+"gui/cam/cam/attributes_window/v/Clean Section Final Height Count"	250
+"gui/cam/cam/attributes_window/v/Clean Serial Register"	True
+"gui/cam/cam/attributes_window/v/Clean Until Trigger"	True
+"gui/cam/cam/attributes_window/v/Disable Data Formatting"	False
+"gui/cam/cam/attributes_window/v/Exact Readout Count Maximum"	None
+"gui/cam/cam/attributes_window/v/Exposure Time"	1.000000000000E+02
+"gui/cam/cam/attributes_window/v/Frame Rate Calculation"	None
+"gui/cam/cam/attributes_window/v/Frame Size"	None
+"gui/cam/cam/attributes_window/v/Frame Stride"	None
+"gui/cam/cam/attributes_window/v/Frame Tracking Bit Depth"	64
+"gui/cam/cam/attributes_window/v/Frames per Readout"	None
+"gui/cam/cam/attributes_window/v/Gap Height"	None
+"gui/cam/cam/attributes_window/v/Gap Width"	None
+"gui/cam/cam/attributes_window/v/Kinetics Window Height"	10
+"gui/cam/cam/attributes_window/v/Online Readout Rate Calculation"	None
+gui/cam/cam/attributes_window/v/Orientation	0
+"gui/cam/cam/attributes_window/v/Output Signal"	-1
+"gui/cam/cam/attributes_window/v/Pixel Bit Depth"	None
+"gui/cam/cam/attributes_window/v/Pixel Format"	-1
+"gui/cam/cam/attributes_window/v/Pixel Height"	None
+"gui/cam/cam/attributes_window/v/Pixel Width"	None
+"gui/cam/cam/attributes_window/v/Readout Control Mode"	-1
+"gui/cam/cam/attributes_window/v/Readout Count"	1
+"gui/cam/cam/attributes_window/v/Readout Orientation"	0
+"gui/cam/cam/attributes_window/v/Readout Rate Calculation"	None
+"gui/cam/cam/attributes_window/v/Readout Stride"	None
+"gui/cam/cam/attributes_window/v/Readout Time Calculation"	None
+"gui/cam/cam/attributes_window/v/Sensor Active Bottom Margin"	None
+"gui/cam/cam/attributes_window/v/Sensor Active Extended Height"	None
+"gui/cam/cam/attributes_window/v/Sensor Active Height"	None
+"gui/cam/cam/attributes_window/v/Sensor Active Left Margin"	None
+"gui/cam/cam/attributes_window/v/Sensor Active Right Margin"	None
+"gui/cam/cam/attributes_window/v/Sensor Active Top Margin"	None
+"gui/cam/cam/attributes_window/v/Sensor Active Width"	None
+"gui/cam/cam/attributes_window/v/Sensor Masked Bottom Margin"	None
+"gui/cam/cam/attributes_window/v/Sensor Masked Height"	None
+"gui/cam/cam/attributes_window/v/Sensor Masked Top Margin"	None
+"gui/cam/cam/attributes_window/v/Sensor Secondary Active Height"	None
+"gui/cam/cam/attributes_window/v/Sensor Secondary Masked Height"	None
+"gui/cam/cam/attributes_window/v/Sensor Temperature Reading"	None
+"gui/cam/cam/attributes_window/v/Sensor Temperature Set Point"	-7.000000000000E+01
+"gui/cam/cam/attributes_window/v/Sensor Temperature Status"	1
+"gui/cam/cam/attributes_window/v/Sensor Type"	1
+"gui/cam/cam/attributes_window/v/Shutter Closing Delay"	8.000000000000E+00
+"gui/cam/cam/attributes_window/v/Shutter Delay Resolution"	1.000000000000E+03
+"gui/cam/cam/attributes_window/v/Shutter Timing Mode"	-1
+"gui/cam/cam/attributes_window/v/Time Stamp Bit Depth"	64
+"gui/cam/cam/attributes_window/v/Time Stamp Resolution"	10000000
+"gui/cam/cam/attributes_window/v/Time Stamps"	-1
+"gui/cam/cam/attributes_window/v/Track Frames"	False
+"gui/cam/cam/attributes_window/v/Trigger Determination"	-1
+"gui/cam/cam/attributes_window/v/Trigger Response"	-1
+"gui/cam/cam/attributes_window/v/Vertical Shift Rate"	3.020000000000E+01
+gui/cam/cam/attributes_window/window/size	(614, 487)
+gui/cam/cam/attributes_window/close	False
+gui/cam/cam/attributes_window/quick_access	False
+gui/cam/cam/add_info	False
+gui/cam/cam/apply	False
+gui/cam/cam/auto_apply	True
+gui/cam/cam/connect	False
+gui/cam/cam/disconnect	False
+gui/cam/cam/exposure	1.000000000000E+02
+gui/cam/cam/frame_period	6.902044500000E+02
+gui/cam/cam/img_size	(1024, 1024)
+gui/cam/cam/roi	((0, 1024, 1), (0, 1024, 1))
+gui/cam/cam/roi_indicator	"[0 - 1024] x [0 - 1024]  Bin 1x1"
+gui/cam/cam/select_roi	False
+gui/cam/cam/set_full_roi	False
+gui/cam/cam/show_attributes_window	False
+gui/cam/cam/show_det_size	False
+gui/cam/cam/show_gui_roi	False
+gui/cam/cam/size_indicator	1024 x 1024
+gui/cam/cam/start	False
+gui/cam/cam/stop	False
+gui/cam/cam/trigger_mode	int
+gui/cam/camstat/frames/acquired	0
+gui/cam/camstat/frames/buffstat	0 / 100
+gui/cam/camstat/frames/fps	0
+gui/cam/camstat/frames/readstat	0 | 0
+gui/cam/camstat/acquisition	Stopped
+gui/cam/camstat/cam_kind	Princeton Instruments PICam
+gui/cam/camstat/cam_name	PIXIS: 1024B 0809080002
+gui/cam/camstat/connection	Connected
+gui/cam/img/colormap/mode	rgb
+gui/cam/img/colormap/ticks	[(0.000000000000E+00, (0, 0, 0, 255)), (9.900000000000E-01, (255, 255, 255, 255)), (1.000000000000E+00, (255, 0, 0, 255))]
+gui/cam/img/colormap/ticksVisible	True
+gui/cam/img/auto_histogram_range	True
+gui/cam/img/center_lines	False
+gui/cam/img/coord_system	display
+gui/cam/img/flip_x	False
+gui/cam/img/flip_y	False
+gui/cam/img/hlineon	True
+gui/cam/img/hlinepos	5.750000000000E+02
+gui/cam/img/img_lim_preset	(None, None)
+gui/cam/img/linecut_width	1
+gui/cam/img/load_preset	False
+gui/cam/img/maxlim	3.090000000000E+03
+gui/cam/img/minlim	-4.654000000000E+03
+gui/cam/img/normalize	True
+gui/cam/img/save_preset	False
+gui/cam/img/show_histogram	False
+gui/cam/img/show_linecuts	False
+gui/cam/img/show_lines	True
+gui/cam/img/single	False
+gui/cam/img/size	1024 x 1024
+gui/cam/img/transpose	True
+gui/cam/img/update_image	True
+gui/cam/img/vlineon	True
+gui/cam/img/vlinepos	2.980000000000E+02
+gui/cam/save/message_log_window/window/size	(500, 300)
+gui/cam/save/message_log_window/event_msg	""
+gui/cam/save/message_log_window/log_event	False
+gui/cam/save/add_datetime	True
+gui/cam/save/batch_size	10
+gui/cam/save/browse	False
+gui/cam/save/default_snap_path	True
+gui/cam/save/do_filesplit	True
+gui/cam/save/filesplit	1
+gui/cam/save/format	raw
+gui/cam/save/limit_frames	True
+gui/cam/save/make_folder	True
+gui/cam/save/on_name_conflict	rename
+gui/cam/save/path	C:/Users/Owner/PICAM/pics/
+gui/cam/save/pretrigger_clear	False
+gui/cam/save/pretrigger_enabled	False
+gui/cam/save/pretrigger_size	1
+gui/cam/save/save_settings	True
+gui/cam/save/saving	True
+gui/cam/save/show_log_window	False
+gui/cam/save/snap_add_datetime	True
+gui/cam/save/snap_browse	False
+gui/cam/save/snap_display_source	standard
+gui/cam/save/snap_displayed	False
+gui/cam/save/snap_format	tiff
+gui/cam/save/snap_make_folder	True
+gui/cam/save/snap_path	C:/Users/Owner/PICAM/pics/_snapshot
+gui/cam/save/stream_mode	cont
+gui/cam/savestat/frames/missed	0
+gui/cam/savestat/frames/pretrigger_frames	0 / 0
+gui/cam/savestat/frames/pretrigger_ram	0 / 0 Mb
+gui/cam/savestat/frames/pretrigger_skipped	"0"
+gui/cam/savestat/frames/ram_status	0 / 4096 Mb
+gui/cam/savestat/frames/received	10
+gui/cam/savestat/frames/saved	10
+gui/cam/savestat/frames/scheduled	10
+gui/cam/savestat/frames/status_line_check	Not enabled
+gui/cam/savestat/issues	"None"
+gui/cam/savestat/saving	Saving done
+gui/defaults/window/maximized	True
+gui/defaults/window/position	(0, 29)
+gui/defaults/window/size	(1920, 991)
+gui/defaults/settings_folder	""
+gui/disp/display_fps	0.000000000000E+00
+gui/disp/display_update_period	5.000000000000E-02
+gui/disp/slowdown_enabled	""
+"gui/indicators/cam/cam/attributes_window/v/ADC Analog Gain"	""
+"gui/indicators/cam/cam/attributes_window/v/ADC Bit Depth"	""
+"gui/indicators/cam/cam/attributes_window/v/ADC Speed"	""
+"gui/indicators/cam/cam/attributes_window/v/Active Bottom Margin"	""
+"gui/indicators/cam/cam/attributes_window/v/Active Height"	""
+"gui/indicators/cam/cam/attributes_window/v/Active Left Margin"	""
+"gui/indicators/cam/cam/attributes_window/v/Active Right Margin"	""
+"gui/indicators/cam/cam/attributes_window/v/Active Top Margin"	""
+"gui/indicators/cam/cam/attributes_window/v/Active Width"	""
+"gui/indicators/cam/cam/attributes_window/v/Clean Cycle Count"	""
+"gui/indicators/cam/cam/attributes_window/v/Clean Cycle Height"	""
+"gui/indicators/cam/cam/attributes_window/v/Clean Section Final Height"	""
+"gui/indicators/cam/cam/attributes_window/v/Clean Section Final Height Count"	""
+"gui/indicators/cam/cam/attributes_window/v/Clean Serial Register"	""
+"gui/indicators/cam/cam/attributes_window/v/Clean Until Trigger"	""
+"gui/indicators/cam/cam/attributes_window/v/Disable Data Formatting"	""
+"gui/indicators/cam/cam/attributes_window/v/Exposure Time"	""
+"gui/indicators/cam/cam/attributes_window/v/Frame Tracking Bit Depth"	""
+"gui/indicators/cam/cam/attributes_window/v/Kinetics Window Height"	""
+"gui/indicators/cam/cam/attributes_window/v/Output Signal"	""
+"gui/indicators/cam/cam/attributes_window/v/Pixel Format"	""
+"gui/indicators/cam/cam/attributes_window/v/Readout Control Mode"	""
+"gui/indicators/cam/cam/attributes_window/v/Readout Count"	""
+"gui/indicators/cam/cam/attributes_window/v/Sensor Temperature Set Point"	""
+"gui/indicators/cam/cam/attributes_window/v/Shutter Closing Delay"	""
+"gui/indicators/cam/cam/attributes_window/v/Shutter Delay Resolution"	""
+"gui/indicators/cam/cam/attributes_window/v/Shutter Timing Mode"	""
+"gui/indicators/cam/cam/attributes_window/v/Time Stamp Bit Depth"	""
+"gui/indicators/cam/cam/attributes_window/v/Time Stamp Resolution"	""
+"gui/indicators/cam/cam/attributes_window/v/Time Stamps"	""
+"gui/indicators/cam/cam/attributes_window/v/Track Frames"	""
+"gui/indicators/cam/cam/attributes_window/v/Trigger Determination"	""
+"gui/indicators/cam/cam/attributes_window/v/Trigger Response"	""
+"gui/indicators/cam/cam/attributes_window/v/Vertical Shift Rate"	""
+gui/indicators/cam/cam/add_info	Off
+gui/indicators/cam/cam/exposure	"100.00"
+gui/indicators/cam/cam/trigger_mode	Internal
+gui/indicators/cam/img/maxlim	"3090"
+gui/indicators/cam/img/minlim	"-4654"
+gui/indicators/plugins/filter.filt/ctl_tab/current_filter_params/filter_kind	Smooth (DoG)
+gui/indicators/plugins/filter.filt/ctl_tab/current_filter_params/maxwidth	"10.000"
+gui/indicators/plugins/filter.filt/ctl_tab/current_filter_params/minwidth	"2.000"
+gui/indicators/plugins/filter.filt/ctl_tab/current_filter_params/show_info	Filtered frame
+gui/indicators/plugins/filter.filt/ctl_tab/defaults	None
+gui/indicators/plugins/trigger_save.trigsave/params/dead_time	""
+gui/indicators/plugins/trigger_save.trigsave/params/enabled	""
+gui/indicators/plugins/trigger_save.trigsave/params/frame_source	""
+gui/indicators/plugins/trigger_save.trigsave/params/image_trigger_threshold	""
+gui/indicators/plugins/trigger_save.trigsave/params/limit_videos	""
+gui/indicators/plugins/trigger_save.trigsave/params/max_videos	"0"
+gui/indicators/plugins/trigger_save.trigsave/params/period	""
+gui/indicators/plugins/trigger_save.trigsave/params/save_mode	""
+gui/indicators/plugins/trigger_save.trigsave/params/trigger_mode	""
+gui/indicators/preproc/slowdown_buffer	0 / 0
+gui/indicators/preproc/slowdown_fps	"0.0"
+gui/indicators/proc/comb_count	2 / 2
+gui/indicators/proc/comb_step	""
+gui/plotting/roi/center/x	571
+gui/plotting/roi/center/y	287
+gui/plotting/roi/size/x	100
+gui/plotting/roi/size/y	100
+gui/plotting/roi/enable	True
+gui/plotting/roi/reset	False
+gui/plotting/disp_last	1000
+gui/plotting/enable	True
+gui/plotting/reset_history	False
+gui/plotting/skip_count	1
+gui/plotting/source	show
+gui/plotting/update_plot	True
+gui/plugins/filter/filt/ctl_tab/defaults/None/__aux__/plotter_selector	None
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/colormap/mode	rgb
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/colormap/ticks	[(0.000000000000E+00, (12, 7, 134, 255)), (2.500000000000E-01, (126, 3, 167, 255)), (5.000000000000E-01, (203, 71, 119, 255)), (7.500000000000E-01, (248, 149, 64, 255)), (1.000000000000E+00, (239, 248, 33, 255))]
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/colormap/ticksVisible	True
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/disp/display_fps	4.431383926336E-01
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/disp/display_update_period	5.000000000000E-02
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/disp/slowdown_enabled	""
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/auto_histogram_range	True
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/center_lines	False
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/coord_system	display
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/flip_x	False
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/flip_y	False
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/hlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/hlinepos	5.775000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/img_lim_preset	(None, None)
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/linecut_width	1
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/load_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/maxlim	6.216100000000E+04
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/minlim	3.384000000000E+03
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/normalize	True
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/save_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/show_histogram	True
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/show_linecuts	False
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/show_lines	True
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/single	False
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/size	1024 x 1024
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/transpose	True
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/update_image	True
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/vlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/__no_filter__/__plotter__/vlinepos	2.869000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/colormap/mode	rgb
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/colormap/ticks	[(0.000000000000E+00, (12, 7, 134, 255)), (2.500000000000E-01, (126, 3, 167, 255)), (5.000000000000E-01, (203, 71, 119, 255)), (7.500000000000E-01, (248, 149, 64, 255)), (1.000000000000E+00, (239, 248, 33, 255))]
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/colormap/ticksVisible	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/disp/display_fps	1.172729336687E+00
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/disp/display_update_period	5.000000000000E-02
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/disp/slowdown_enabled	""
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/auto_histogram_range	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/center_lines	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/coord_system	display
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/flip_x	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/flip_y	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/hlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/hlinepos	1.673000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/img_lim_preset	(None, None)
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/linecut_width	1
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/load_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/maxlim	7.700000000000E-01
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/minlim	1.000000000000E-02
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/normalize	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/save_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/show_histogram	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/show_linecuts	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/show_lines	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/single	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/size	1024 x 1024
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/transpose	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/update_image	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/vlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter/frame/vlinepos	1.837000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__aux__/plotter_selector	frame
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/colormap/mode	rgb
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/colormap/ticks	[(0.000000000000E+00, (12, 7, 134, 255)), (2.500000000000E-01, (126, 3, 167, 255)), (5.000000000000E-01, (203, 71, 119, 255)), (7.500000000000E-01, (248, 149, 64, 255)), (1.000000000000E+00, (239, 248, 33, 255))]
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/colormap/ticksVisible	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/disp/display_fps	1.172729336687E+00
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/disp/display_update_period	5.000000000000E-02
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/disp/slowdown_enabled	""
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/auto_histogram_range	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/center_lines	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/coord_system	display
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/flip_x	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/flip_y	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/hlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/hlinepos	1.673000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/img_lim_preset	(None, None)
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/linecut_width	1
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/load_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/maxlim	7.700000000000E-01
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/minlim	1.000000000000E-02
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/normalize	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/save_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/show_histogram	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/show_linecuts	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/show_lines	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/single	False
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/size	1024 x 1024
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/transpose	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/update_image	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/vlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/__plotter__/vlinepos	1.837000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/linepos	None
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/show_map_info	fit
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/track_lines	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/track_max	True
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/width	5
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/x_position	209
+gui/plugins/filter/filt/ctl_tab/defaults/beam_profile/y_position	166
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__aux__/plotter_selector	None
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/colormap/mode	rgb
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/colormap/ticks	[(0.000000000000E+00, (12, 7, 134, 255)), (2.500000000000E-01, (126, 3, 167, 255)), (5.000000000000E-01, (203, 71, 119, 255)), (7.500000000000E-01, (248, 149, 64, 255)), (1.000000000000E+00, (239, 248, 33, 255))]
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/colormap/ticksVisible	True
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/disp/display_fps	6.064768654087E-02
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/disp/display_update_period	5.000000000000E-02
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/disp/slowdown_enabled	""
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/auto_histogram_range	True
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/center_lines	False
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/coord_system	display
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/flip_x	False
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/flip_y	False
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/hlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/hlinepos	6.467000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/img_lim_preset	(None, None)
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/linecut_width	1
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/load_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/maxlim	8.903300000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/minlim	8.755900000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/normalize	True
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/save_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/show_histogram	True
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/show_linecuts	False
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/show_lines	True
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/single	False
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/size	1024 x 1024
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/transpose	True
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/update_image	True
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/vlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/blur/__plotter__/vlinepos	5.490000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/blur/width	1.000000000000E+01
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/colormap/mode	rgb
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/colormap/ticks	[(0.000000000000E+00, (12, 7, 134, 255)), (2.500000000000E-01, (126, 3, 167, 255)), (5.000000000000E-01, (203, 71, 119, 255)), (7.500000000000E-01, (248, 149, 64, 255)), (1.000000000000E+00, (239, 248, 33, 255))]
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/colormap/ticksVisible	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/disp/display_fps	5.230848394836E-01
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/disp/display_update_period	5.000000000000E-02
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/disp/slowdown_enabled	""
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/auto_histogram_range	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/center_lines	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/coord_system	display
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/flip_x	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/flip_y	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/hlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/hlinepos	5.655000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/img_lim_preset	(None, None)
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/linecut_width	1
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/load_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/maxlim	2.158629000000E+04
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/minlim	-8.123490000000E+03
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/normalize	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/save_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/show_histogram	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/show_linecuts	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/show_lines	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/single	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/size	1024 x 1024
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/transpose	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/update_image	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/vlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter/frame/vlinepos	3.664000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__aux__/plotter_selector	frame
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/colormap/mode	rgb
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/colormap/ticks	[(0.000000000000E+00, (12, 7, 134, 255)), (2.500000000000E-01, (126, 3, 167, 255)), (5.000000000000E-01, (203, 71, 119, 255)), (7.500000000000E-01, (248, 149, 64, 255)), (1.000000000000E+00, (239, 248, 33, 255))]
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/colormap/ticksVisible	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/disp/display_fps	5.230848394836E-01
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/disp/display_update_period	5.000000000000E-02
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/disp/slowdown_enabled	""
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/auto_histogram_range	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/center_lines	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/coord_system	display
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/flip_x	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/flip_y	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/hlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/hlinepos	5.655000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/img_lim_preset	(None, None)
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/linecut_width	1
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/load_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/maxlim	2.158629000000E+04
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/minlim	-8.123490000000E+03
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/normalize	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/save_preset	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/show_histogram	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/show_linecuts	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/show_lines	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/single	False
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/size	1024 x 1024
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/transpose	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/update_image	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/vlineon	True
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/__plotter__/vlinepos	3.664000000000E+02
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/filter_kind	smooth
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/maxwidth	1.000000000000E+01
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/minwidth	2.000000000000E+00
+gui/plugins/filter/filt/ctl_tab/defaults/fft_bandpass/show_info	frame
+gui/plugins/filter/filt/ctl_tab/description	High- and low-pass filter operating in Fourier domain. Filters out variations below minimal width and above maximal width. Uses either a hard cutoff, or a smooth Gaussian cutoff, which is identical to the Gaussian blur.
+gui/plugins/filter/filt/ctl_tab/enabled	True
+gui/plugins/filter/filt/ctl_tab/filter_id	beam_profile
+gui/plugins/filter/filt/ctl_tab/filter_tab_label	""
+gui/plugins/filter/filt/ctl_tab/load_filter	False
+gui/plugins/filter/filt/ctl_tab/loaded	True
+gui/plugins/filter/filt/ctl_tab/loaded_filter	FFT bandpass
+gui/plugins/filter/filt/ctl_tab/unload_filter	False
+gui/plugins/filter/filt/plt_tab/procind/binning	"none"
+gui/plugins/filter/filt/plt_tab/procind/filter	FFT bandpass
+gui/plugins/trigger_save/trigsave/params/dead_time	1.000000000000E+01
+gui/plugins/trigger_save/trigsave/params/enabled	False
+gui/plugins/trigger_save/trigsave/params/event_trigger_status	armed
+gui/plugins/trigger_save/trigsave/params/frame_source	standard
+gui/plugins/trigger_save/trigsave/params/image_trigger_threshold	0.000000000000E+00
+gui/plugins/trigger_save/trigsave/params/limit_videos	False
+gui/plugins/trigger_save/trigsave/params/max_videos	1
+gui/plugins/trigger_save/trigsave/params/period	1.000000000000E+01
+gui/plugins/trigger_save/trigsave/params/save_mode	full
+gui/plugins/trigger_save/trigsave/params/trigger_mode	timer
+gui/preproc/bin_enabled	False
+gui/preproc/convert_to_float	False
+gui/preproc/slowdown_buffer	100
+gui/preproc/slowdown_enabled	False
+gui/preproc/slowdown_fps	1.000000000000E+01
+gui/preproc/source_fps	1.453714136779E+00
+gui/preproc/spat_bin_mode	mean
+gui/preproc/spat_bin_x	1
+gui/preproc/spat_bin_y	1
+gui/preproc/time_bin	1
+gui/preproc/time_bin_mode	mean
+gui/proc/background_saving	all
+gui/proc/background_state	Valid
+gui/proc/comb_count	2
+gui/proc/comb_mode	mean
+gui/proc/comb_step	1
+gui/proc/enabled	True
+gui/proc/grab_background	False
+gui/proc/method	snapshot
+gui/procind/background	Snapshot
+gui/procind/binning	"none"
+gui/extras	None
+gui/load_settings	False
+gui/save_settings	False
+gui/settings_load_scope	all
+save/background/bg_params/count	2
+save/background/bg_params/dtype	None
+save/background/bg_params/mode	mean
+save/background/bg_params/offset	False
+save/background/bg_params/step	1
+save/background/dtype	<u2
+save/background/format	bin
+save/background/saving_mode	all
+save/background/shape	(1024, 1024)
+save/background/size	3
+save/first_frame_session/camera	5
+save/frame/dtype	<u2
+save/frame/shape	(1024, 1024)
+save/last_frame_session/camera	5
+save/pretrigger_status/start	None
+save/pretrigger_status/stop	None
+save/status/error	("none", None)
+save/status/result	success
+save/append	True
+save/batch_size	10
+save/chunk_size	1
+save/first_frame_index	0
+save/first_frame_timestamp	1.729813465430E+09
+save/format	raw
+save/last_frame_index	9
+save/last_frame_timestamp	1.729813471639E+09
+save/missed	0
+save/path	c:\users\owner\picam\pics\_20241024_164417.bin
+save/path_kind	folder
+save/received	10
+save/saved	10
+save/scheduled	10
+save/start_timestamp	1.729813457255E+09
+save/status_line_check	off
+save/stop_timestamp	1.729813471708E+09
+software/version	2.2.1
+
+# Saved on 2024/10/24 16:44:31
