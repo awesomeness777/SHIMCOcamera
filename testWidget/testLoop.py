@@ -26,7 +26,7 @@ class Ui_Form(object):
         self.inputValue = QtWidgets.QSpinBox(Form)
         self.inputValue.setGeometry(QtCore.QRect(170, 130, 42, 22))
         self.inputValue.setObjectName("inputValue")
-        self.inputButton.clicked.connect(self.testFunction(self.inputValue.value(), False))
+        self.inputButton.clicked.connect(self.testFunction)
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(160, 110, 71, 16))
         self.label.setObjectName("label")
@@ -34,10 +34,10 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
         #self.stopButton.clicked.connect(break)
 
-    def testFunction(self, number, stop):
-        while(stop==False):
-            print(number)
-            time.sleep(2)
+    def testFunction(self):
+        #while(stop==False):
+            print(self.inputValue.value())
+            #time.sleep(2)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
