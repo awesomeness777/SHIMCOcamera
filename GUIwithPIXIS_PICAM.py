@@ -8,6 +8,9 @@ Created on Tue Nov 12 13:18:52 2024
 from PyQt5 import QtCore, QtWidgets
 import threading
 import time
+import datetime
+import os
+import numpy as np
 
 from PIXIS_PICAM import *   
 
@@ -98,10 +101,13 @@ class Ui_Form(object):
                 cam1.set_attribute_value('Exposure Time', self.Exposure.value())
                 cam1.set_attribute_value('Frame Period', self.Frame.value())
                 cam1.set_attribute_value('Temperature', self.Temperature.value())
+
                 image = cam1.grab(1) 
-                plt.imshow(image)
-                plt.colorbar()
-                plt.show()
+                current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                filename = f"{current_time}.txt"
+                file_path = os.path.join("C:\\Program Files\\Princeton Instruments\\PICam\\Images", filename)    
+                np.savetxt(file_path, image, fmt="%s")
+                
             else:
                 break
             time.sleep(2)
@@ -131,5 +137,6 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
+
 
 
