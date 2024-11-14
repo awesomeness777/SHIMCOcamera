@@ -104,13 +104,12 @@ class Ui_Form(object):
 
                 image = cam1.grab(1) 
                 current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-                filename = f"{current_time}.txt"
-                file_path = os.path.join("C:\\Program Files\\Princeton Instruments\\PICam\\Images", filename)    
-                np.savetxt(file_path, image, fmt="%s")
-                
+                filename = f"{current_time}"    
+                file_path = os.path.join("C:\\Program Files\\Princeton Instruments\\PICam\\Images", filename)
+#                np.savetxt(file_path + '.txt', image, fmt="%g")
+                image.tofile(file_path + '.bin')
             else:
                 break
-            time.sleep(2)
 
     def pauseCapture(self):
         self.paused = True
@@ -137,6 +136,7 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
+
 
 
 
