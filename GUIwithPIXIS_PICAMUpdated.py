@@ -1,0 +1,236 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Nov 20 20:08:28 2024
+
+@author: hayde
+"""
+
+from PyQt5 import QtCore, QtWidgets
+import threading
+import time
+import datetime
+import os
+import numpy as np
+
+from PIXIS_PICAM import * 
+
+class Ui_Form(object):
+    def setupUi(self, Form):
+        self.Form = Form
+        Form.setObjectName("Form")
+        Form.resize(800, 600)
+        
+        # Parameters Label
+        self.Pt = QtWidgets.QLabel(Form)
+        self.Pt.setGeometry(QtCore.QRect(35, 10, 120, 25))
+        self.Pt.setObjectName("Pt")
+        self.Pt.setText("Parameters:")
+        self.Pt.setStyleSheet("font-size: 16px;")
+        
+        # Image Capture Label
+        self.IC = QtWidgets.QLabel(Form)
+        self.IC.setGeometry(QtCore.QRect(35, 260, 130, 25))
+        self.IC.setText("Image Capture:")
+        self.IC.setStyleSheet("font-size: 16px;")
+        
+        # Close Application
+        self.Pt = QtWidgets.QLabel(Form)
+        self.Pt.setGeometry(QtCore.QRect(35, 470, 120, 25))
+        self.Pt.setObjectName("Pt")
+        self.Pt.setText("Close App:")
+        self.Pt.setStyleSheet("font-size: 16px;")
+        
+        # Pause Button
+        self.pauseButton = QtWidgets.QPushButton(Form)
+        self.pauseButton.setGeometry(QtCore.QRect(35, 370, 150, 50))
+        self.pauseButton.setObjectName("pause")
+        self.pauseButton.setText("Pause")
+        self.pauseButton.clicked.connect(self.pauseCapture)
+        self.pauseButton.setEnabled(False)
+        
+        # Resume Button
+        self.resumeButton = QtWidgets.QPushButton(Form)
+        self.resumeButton.setGeometry(QtCore.QRect(35, 300, 150, 50))
+        self.resumeButton.setObjectName("resume")
+        self.resumeButton.setText("Start")
+        self.resumeButton.clicked.connect(self.resumeCapture)
+        
+        # Stop Button
+        self.stopButton = QtWidgets.QPushButton(Form)
+        self.stopButton.setGeometry(QtCore.QRect(35, 510, 150, 50))
+        self.stopButton.setObjectName("stopButton")
+        self.stopButton.setText("Close")
+        
+        # Set Value Button
+        self.setValues = QtWidgets.QPushButton(Form)
+        self.setValues.setGeometry(QtCore.QRect(580, 150, 150, 50))
+        self.setValues.setObjectName("setvalues")
+        self.setValues.setText("Set Values")
+        
+        # Target Textbox
+        self.Target = QtWidgets.QLineEdit(Form)
+        self.Target.setGeometry(QtCore.QRect(30, 170, 100, 30))
+        self.Target.setObjectName("Target_Name")
+        self.Target.setText("None")
+        
+        # Exposure Spinbox
+        self.Exposure = QtWidgets.QSpinBox(Form)
+        self.Exposure.setGeometry(QtCore.QRect(215, 170, 90, 30))
+        self.Exposure.setObjectName("Exposure Time")
+        self.Exposure.setMaximum(10000)
+        self.Exposure.setValue(10)
+        
+        # Temperature Spinbox
+        self.Temperature = QtWidgets.QSpinBox(Form)
+        self.Temperature.setGeometry(QtCore.QRect(410, 170, 90, 30))
+        self.Temperature.setObjectName("Temperature")
+        self.Temperature.setMaximum(10000) 
+        self.Temperature.setMinimum(-100)
+        self.Temperature.setValue(-70)  
+
+        # Current Target Label
+        self.Tg = QtWidgets.QLabel(Form)
+        self.Tg.setGeometry(QtCore.QRect(35, 50, 120, 16))
+        self.Tg.setObjectName("CTg")
+        self.Tg.setText("Current Target")        
+
+        # Target Label
+        self.Tg = QtWidgets.QLabel(Form)
+        self.Tg.setGeometry(QtCore.QRect(40, 150, 120, 16))
+        self.Tg.setObjectName("Tg")
+        self.Tg.setText("Target Name")
+
+        # Current Exposure Time Label
+        self.exp = QtWidgets.QLabel(Form)
+        self.exp.setGeometry(QtCore.QRect(175, 50, 165, 16))
+        self.exp.setObjectName("CExp")
+        self.exp.setText("Current Exposure Time (ms)")
+        
+        # Exposure Time Label
+        self.exp = QtWidgets.QLabel(Form)
+        self.exp.setGeometry(QtCore.QRect(203, 150, 120, 16))
+        self.exp.setObjectName("Exp")
+        self.exp.setText("Exposure Time (ms)")
+
+        # Current Temperature Label
+        self.Temp = QtWidgets.QLabel(Form)
+        self.Temp.setGeometry(QtCore.QRect(383, 50, 155, 16))
+        self.Temp.setObjectName("CTemp")
+        self.Temp.setText("Current Temperature (°C)")
+        
+        # Temperature Label
+        self.Temp = QtWidgets.QLabel(Form)
+        self.Temp.setGeometry(QtCore.QRect(400, 150, 120, 16))
+        self.Temp.setObjectName("Temp")
+        self.Temp.setText("Temperature (°C)")
+        
+        # Target Status
+        self.TGS = QtWidgets.QLabel(Form)
+        self.TGS.setGeometry(QtCore.QRect(60, 80, 120, 16))
+        self.TGS.setObjectName("TGS")
+        self.TGS.setText('None')
+        
+        # Exp Status
+        self.ExpS = QtWidgets.QLabel(Form)
+        self.ExpS.setGeometry(QtCore.QRect(250, 80, 165, 16))
+        self.ExpS.setObjectName("ExpS")
+        self.ExpS.setText('10')
+        
+        # Temp Status
+        self.TmpS = QtWidgets.QLabel(Form)
+        self.TmpS.setGeometry(QtCore.QRect(435, 80, 155, 16))
+        self.TmpS.setObjectName("TmpS")
+        self.TempStatus()
+        
+        # Camera Status Label
+        self.CG = QtWidgets.QLabel(Form)
+        self.CG.setGeometry(QtCore.QRect(560, 10, 250, 16))
+        self.CG.setObjectName("CG")
+        self.updateCameraStatus()
+        
+        # Timer for live Updates
+        self.timer = QtCore.QTimer(Form)
+        self.timer.timeout.connect(self.updateCameraStatus)
+        self.timer.timeout.connect(self.TempStatus)
+        self.timer.start(500)
+
+        self.stopButton.clicked.connect(self.stopFunction)
+        self.setValues.clicked.connect(self.setFunction)
+        
+        self.stop = False
+        self.cam_open = True
+        self.paused = True
+        self.TargetName = ""
+
+        # Start the image capture thread
+        self.capture_thread = threading.Thread(target=self.capture_images)
+        self.capture_thread.start()
+        
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def stopFunction(self):
+        self.stop = True
+        self.cam_open = False
+        self.Form.close
+        cam1.close()
+        
+    def updateCameraStatus(self):
+        self.CG.clear()
+        if -72 < cam1.get_attribute_value('Sensor Temperature Reading') < -68:
+            self.CG.setText("Camera is ready for Image Capture")
+            self.CG.setStyleSheet("color: green;")
+        else:
+            self.CG.setText("Camera is not ready for Image Capture")
+            self.CG.setStyleSheet("color: red;")
+    
+    def TempStatus(self):
+        self.TmpS.setText(str(get_attribute_value('Temperature')))
+        
+    def setFunction(self):
+        self.TGS.setText(str(self.Target.text()))
+        self.ExpS.setText(str(self.Exposure.value()))
+        
+        cam1.set_attribute_value('Exposure Time', self.Exposure.value())
+        cam1.set_attribute_value('Sensor Temperature Reading', self.Temperature.value())
+
+    def capture_images(self):
+        while self.cam_open:
+            if self.paused:
+                time.sleep(1)
+                continue
+            
+            if not self.stop:
+                target = self.Target.text().strip().replace(" ", "_")
+                image = cam1.grab(1) 
+                current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                filename = f"{target}_{current_time}"    
+                file_path = os.path.join("C:\\Program Files\\Princeton Instruments\\PICam\\Images", filename)
+                image.tofile(file_path + '.bin')
+            else:
+                break
+
+    def pauseCapture(self):
+        self.paused = True
+        self.pauseButton.setEnabled(False)
+        self.resumeButton.setEnabled(True)
+
+    def resumeCapture(self):
+        self.paused = False
+        self.resumeButton.setEnabled(False)
+        self.pauseButton.setEnabled(True)
+
+    def retranslateUi(self, Form):
+        _translate = QtCore.QCoreApplication.translate
+        Form.setWindowTitle(_translate("Form", "Camera Operation"))
+
+        
+if __name__ == "__main__":
+    import sys
+    app = QtWidgets.QApplication(sys.argv)
+    Form = QtWidgets.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
+    sys.exit(app.exec_())
+
