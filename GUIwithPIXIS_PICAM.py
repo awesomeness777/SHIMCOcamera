@@ -185,28 +185,32 @@ class Ui_Form(object):
             self.CG.setStyleSheet("color: red;")
     
     def TempStatus(self):
-        self.TmpS.setText(str(get_attribute_value('Temperature')))
+        self.TmpS.setText(str(cam1.get_attribute_value('Sensor Temperature Reading')))
         
     def setFunction(self):
         self.TGS.setText(str(self.Target.text()))
         self.ExpS.setText(str(self.Exposure.value()))
         
         cam1.set_attribute_value('Exposure Time', self.Exposure.value())
-        cam1.set_attribute_value('Sensor Temperature Reading', self.Temperature.value())
+        print(type(self.Temperature.value()))
+        cam1.set_attribute_value('Sensor Temperature Set Point', self.Temperature.value())
 
     def capture_images(self):
         while self.cam_open:
             if self.paused:
                 time.sleep(1)
                 continue
-            
+            cam1.setup_acquisition(mode="sequence", nframes=100)  # could be combined with start_acquisition, or kept separate
             if not self.stop:
+                cam1.start_acquisition()
+                cam1.wait_for_frame()  # wait for the next available frame
+                image = cam1.read_oldest_image()  # get the oldest image which hasn't been read yet
                 target = self.Target.text().strip().replace(" ", "_")
-                image = cam1.grab(1) 
                 current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
                 filename = f"{target}_{current_time}"    
-                file_path = os.path.join("C:\\Program Files\\Princeton Instruments\\PICam\\Images", filename)
+                file_path = os.path.join("C:\\Users\\Owner\\PICAM\\images", filename)
                 image.tofile(file_path + '.bin')
+                cam1.stop_acquisition()
             else:
                 break
 
@@ -233,4 +237,3 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
-
