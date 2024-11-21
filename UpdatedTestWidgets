@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Nov 20 21:00:17 2024
+Created on Wed Nov 20 20:08:28 2024
 
 @author: hayde
 """
@@ -11,6 +11,8 @@ import time
 import datetime
 import os
 import numpy as np
+
+from PIXIS_PICAM import * 
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -87,10 +89,10 @@ class Ui_Form(object):
         self.Temperature.setValue(-70)  
 
         # Current Target Label
-        self.Tg = QtWidgets.QLabel(Form)
-        self.Tg.setGeometry(QtCore.QRect(35, 50, 120, 16))
-        self.Tg.setObjectName("CTg")
-        self.Tg.setText("Current Target")        
+        self.CTg = QtWidgets.QLabel(Form)
+        self.CTg.setGeometry(QtCore.QRect(35, 50, 120, 16))
+        self.CTg.setObjectName("CTg")
+        self.CTg.setText("Current Target")        
 
         # Target Label
         self.Tg = QtWidgets.QLabel(Form)
@@ -99,10 +101,10 @@ class Ui_Form(object):
         self.Tg.setText("Target Name")
 
         # Current Exposure Time Label
-        self.exp = QtWidgets.QLabel(Form)
-        self.exp.setGeometry(QtCore.QRect(175, 50, 165, 16))
-        self.exp.setObjectName("CExp")
-        self.exp.setText("Current Exposure Time (ms)")
+        self.Cexp = QtWidgets.QLabel(Form)
+        self.Cexp.setGeometry(QtCore.QRect(175, 50, 165, 16))
+        self.Cexp.setObjectName("CExp")
+        self.Cexp.setText("Current Exposure Time (ms)")
         
         # Exposure Time Label
         self.exp = QtWidgets.QLabel(Form)
@@ -111,10 +113,10 @@ class Ui_Form(object):
         self.exp.setText("Exposure Time (ms)")
 
         # Current Temperature Label
-        self.Temp = QtWidgets.QLabel(Form)
-        self.Temp.setGeometry(QtCore.QRect(383, 50, 155, 16))
-        self.Temp.setObjectName("CTemp")
-        self.Temp.setText("Current Temperature (°C)")
+        self.CTemp = QtWidgets.QLabel(Form)
+        self.CTemp.setGeometry(QtCore.QRect(383, 50, 155, 16))
+        self.CTemp.setObjectName("CTemp")
+        self.CTemp.setText("Current Temperature (°C)")
         
         # Temperature Label
         self.Temp = QtWidgets.QLabel(Form)
@@ -170,11 +172,12 @@ class Ui_Form(object):
     def stopFunction(self):
         self.stop = True
         self.cam_open = False
-        self.Form.close()
+        self.Form.close
+        cam1.close()
         
     def updateCameraStatus(self):
         self.CG.clear()
-        if -72 < self.Temperature.value() < -68:
+        if -72 < cam1.get_attribute_value('Sensor Temperature Reading') < -68:
             self.CG.setText("Camera is ready for Image Capture")
             self.CG.setStyleSheet("color: green;")
         else:
@@ -182,14 +185,14 @@ class Ui_Form(object):
             self.CG.setStyleSheet("color: red;")
     
     def TempStatus(self):
-        self.TmpS.setText(str(self.Temperature.value()))
+        self.TmpS.setText(str(get_attribute_value('Temperature')))
         
     def setFunction(self):
         self.TGS.setText(str(self.Target.text()))
         self.ExpS.setText(str(self.Exposure.value()))
         
-#        cam1.set_attribute_value('Exposure Time', self.Exposure.value())
-#        cam1.set_attribute_value('Temperature', self.Temperature.value())
+        cam1.set_attribute_value('Exposure Time', self.Exposure.value())
+        cam1.set_attribute_value('Sensor Temperature Reading', self.Temperature.value())
 
     def capture_images(self):
         while self.cam_open:
@@ -198,12 +201,14 @@ class Ui_Form(object):
                 continue
             
             if not self.stop:
-                print(self.TGS.text())
-                print(self.ExpS.text())
-                print(self.Temperature.value())
+                target = self.Target.text().strip().replace(" ", "_")
+                image = cam1.grab(1) 
+                current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                filename = f"{target}_{current_time}"    
+                file_path = os.path.join("C:\\Program Files\\Princeton Instruments\\PICam\\Images", filename)
+                image.tofile(file_path + '.bin')
             else:
                 break
-            time.sleep(1)
 
     def pauseCapture(self):
         self.paused = True
@@ -228,4 +233,3 @@ if __name__ == "__main__":
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
-
