@@ -19,6 +19,10 @@ class Ui_Form(object):
         self.Form = Form
         Form.setObjectName("Form")
         Form.resize(800, 600)
+        self.stop = False
+        self.cam_open = True
+        self.paused = True
+        self.TargetName = ""
         
         # Parameters Label
         self.Pt = QtWidgets.QLabel(Form)
@@ -157,10 +161,6 @@ class Ui_Form(object):
         self.stopButton.clicked.connect(self.stopFunction)
         self.setValues.clicked.connect(self.setFunction)
         
-        self.stop = False
-        self.cam_open = True
-        self.paused = True
-        self.TargetName = ""
 
         # Start the image capture thread
         self.capture_thread = threading.Thread(target=self.capture_images)
@@ -172,17 +172,20 @@ class Ui_Form(object):
     def stopFunction(self):
         self.stop = True
         self.cam_open = False
-        self.Form.close
+        self.Form.close()
         cam1.close()
+
         
     def updateCameraStatus(self):
         self.CG.clear()
-        if -72 < cam1.get_attribute_value('Sensor Temperature Reading') < -68:
-            self.CG.setText("Camera is ready for Image Capture")
-            self.CG.setStyleSheet("color: green;")
-        else:
-            self.CG.setText("Camera is not ready for Image Capture")
-            self.CG.setStyleSheet("color: red;")
+        if self.stop == False:
+            if -72 < cam1.get_attribute_value('Sensor Temperature Reading') < -68:
+                self.CG.setText("Camera is ready for Image Capture")
+                self.CG.setStyleSheet("color: green;")
+            else:
+                self.CG.setText("Camera is not ready for Image Capture")
+                self.CG.setStyleSheet("color: red;")
+                
     
     def TempStatus(self):
         self.TmpS.setText(str(cam1.get_attribute_value('Sensor Temperature Reading')))
@@ -192,7 +195,6 @@ class Ui_Form(object):
         self.ExpS.setText(str(self.Exposure.value()))
         
         cam1.set_attribute_value('Exposure Time', self.Exposure.value())
-        print(type(self.Temperature.value()))
         cam1.set_attribute_value('Sensor Temperature Set Point', self.Temperature.value())
 
     def capture_images(self):
