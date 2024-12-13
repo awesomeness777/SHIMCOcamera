@@ -12,6 +12,8 @@ import numpy as np
 import threading
 import time
 import matplotlib
+import datetime
+import os
 matplotlib.use('Qt5Agg')
 plt.ioff() 
 
@@ -22,6 +24,10 @@ class Ui_Form(object):
         self.Form = Form
         Form.setObjectName("Form")
         Form.resize(1100, 1000)
+        self.stop = False
+        self.cam_open = True
+        self.paused = True
+        self.TargetName = ""
         
         # Parameters Label
         self.Pt = QtWidgets.QLabel(Form)
@@ -199,11 +205,6 @@ class Ui_Form(object):
         self.ax.set_ylabel("Y-axis")
         self.stopButton.clicked.connect(self.stopFunction)
         self.setValues.clicked.connect(self.setFunction)
-        
-        self.stop = False
-        self.cam_open = True
-        self.paused = True
-        self.TargetName = ""
         
 
         # Start the image capture thread
