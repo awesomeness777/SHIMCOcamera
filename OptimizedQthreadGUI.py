@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Dec 13 15:10:46 2024
+Created on Wed Jan  1 16:34:35 2025
 
 @author: hayde
 """
@@ -11,9 +11,33 @@ import matplotlib.pyplot as plt
 import numpy as np
 import threading
 import time
+from PyQt5.QtCore import QThread, pyqtSignal
 import matplotlib
+
+# Prevent additional Figure Creation
 matplotlib.use('Qt5Agg')
 plt.ioff() 
+
+
+
+class CaptureSeriesThread(QThread):
+    update_image = pyqtSignal(np.ndarray)
+
+    def __init__(self, series, parent=None):
+        super().__init__(parent)
+        self.series = series
+
+    def run(self):
+        for command in self.series:
+            if len(command) == 1:
+                time.sleep(command[0])
+            else:
+                num_exposures, exposure_time, file_name = command
+                for exposure in range(num_exposures):
+                    image = np.random.rand(50, 50)
+                    self.update_image.emit(image)
+                    sleep_time = exposure_time/1000
+                    time.sleep(sleep_time)
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -76,7 +100,7 @@ class Ui_Form(object):
         self.Param = QtWidgets.QTextEdit(Form)
         self.Param.setGeometry(QtCore.QRect(35, 585, 300, 200))
         self.Param.setObjectName("Capture Parameters")
-        self.Param.setText("add delay 10\n5 120 HeNe_darks_120s")
+        self.Param.setText("add delay 3\n5 1 HeNe_darks_120s")
         self.Param.setStyleSheet("font-size: 14px;")
         
         # Example Series
@@ -249,29 +273,33 @@ class Ui_Form(object):
         self.TGS.setText(str(self.Target.text()))
         self.ExpS.setText(str(self.Exposure.value()))
 
-
+    
     def capture_images(self):
+        if not hasattr(self, 'image_handle'):
+            initial_image = np.zeros((50, 50))
+            self.image_handle = self.ax.imshow(initial_image, 
+                                               interpolation='nearest', 
+                                               cmap='Blues',
+                                               vmin=0, vmax=1)
+            self.canvas.draw_idle()
+    
         while self.cam_open:
             if self.paused:
                 time.sleep(1)
                 continue
-            
+    
             if not self.stop:
-                print(self.TGS.text())
-                print(self.ExpS.text())
-                print(self.Temperature.value())
-                
-
+                exposure_time = int(self.Exposure.value()) / 1000
+                print('image')
                 image = np.random.rand(50, 50)
-                self.ax.imshow(image)
-                # self.ax.set_xlabel("X-axis")
-                # self.ax.set_ylabel("Y-axis")
-                self.canvas.draw()
-
-                
+                self.image_handle.set_data(image)
+                self.canvas.draw_idle()
+                time.sleep(exposure_time)
             else:
                 break
+    
             time.sleep(0.2)
+
 
     def pauseCapture(self):
         self.paused = True
@@ -280,76 +308,35 @@ class Ui_Form(object):
         
     def ExecuteSeries(self):
         input_string = self.Param.toPlainText()
-        total_time = 0
         series = []
     
-        # Split the input string into rows
         rows = input_string.splitlines()
-    
         for row in rows:
-            # Split each row into parts
             parts = row.split()
             if not parts:
-                continue  # Skip empty rows
+                continue
     
-            # Check if the row starts with 'add'
-            if parts[0] == 'add':
-                # Check syntax for 'add delay'
-                if len(parts) != 3 or parts[1] != 'delay':
-                    return False, "ERROR: delay syntax incorrect. Example: 'add delay 60'."
-    
-                # Check if the delay duration is a number
-                try:
-                    delay_duration = float(parts[2])
-                except ValueError:
-                    return False, "ERROR: [delay duration] not a number."
-    
-                total_time += delay_duration
-                series.append([delay_duration])  # Add delay to the series
-    
+            if parts[0] == 'add' and parts[1] == 'delay':
+                series.append([float(parts[2])])
             else:
-                # Check if the number of exposures is an integer
-                try:
-                    num_exposures = int(parts[0])  # Ensures it's an integer
-                except ValueError:
-                    return False, "ERROR: [number of exposures] not a number."
-    
-                # Check if the exposure time is a number
-                try:
-                    exposure_time = float(parts[1])
-                except ValueError:
-                    return False, "ERROR: [exposure time] not a number."
-    
-                # Check for forbidden characters in the filename
-                forbidden_chars = {'\\', '/', ':', '*', '?', '"', '<', '>', '|'}
-                if len(parts) < 3:
-                    return False, "ERROR: Missing file name."
+                num_exposures = int(parts[0])
+                exposure_time = float(parts[1])
                 file_name = parts[2]
-                common_chars = set(file_name).intersection(forbidden_chars)
-                if common_chars:
-                    return False, f"ERROR: Forbidden character(s) in file name: {list(common_chars)}."
+                series.append([num_exposures, exposure_time, file_name])
     
-                total_time += num_exposures * exposure_time
-                series.append([num_exposures, exposure_time, file_name]) 
+        # Create and start the thread
+        self.capture_thread = CaptureSeriesThread(series)
+        self.capture_thread.update_image.connect(self.display_image)
+        self.capture_thread.start()
     
-        print(f"Series duration: {int(total_time)} sec (~{int(total_time / 6) / 10} min)")
-        print(f"Series: {series}")
-        
-        for command in series:
-            if len(command) == 1:
-                print(f'delaying for {command[0]} sec')
-                time.sleep(command[0])
-            else:
-                for exposure in range(command[0]):
-                    image = np.random.rand(50, 50)
-                    print('image')
-                    self.ax.imshow(image)
-                    self.canvas.draw()
-                    time.sleep(0.5)
+    def display_image(self, image):
+        if not hasattr(self, 'image_handle'):
+            self.image_handle = self.ax.imshow(image, interpolation='nearest')
+        else:
+            self.image_handle.set_data(image)
     
-        return True, f"Series duration: {int(total_time)} sec (~{int(total_time / 6) / 10} min)", series
-
-
+        self.canvas.draw_idle()
+    
 
     def resumeCapture(self):
         self.paused = False

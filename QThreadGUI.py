@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Nov 20 20:08:28 2024
+Created on Wed Jan  1 16:06:19 2025
 
 @author: hayde
 """
@@ -11,23 +11,36 @@ import matplotlib.pyplot as plt
 import numpy as np
 import threading
 import time
-import matplotlib
-import datetime
-import os
-matplotlib.use('Qt5Agg')
-plt.ioff() 
+from PyQt5.QtCore import QThread, pyqtSignal
 
-from PIXIS_PICAM import * 
+
+
+class CaptureSeriesThread(QThread):
+    update_image = pyqtSignal(np.ndarray)
+
+    def __init__(self, series, parent=None):
+        super().__init__(parent)
+        self.series = series
+
+    def run(self):
+        for command in self.series:
+            if len(command) == 1:  # Delay command
+                delay_duration = command[0]
+                time.sleep(delay_duration)
+            else:
+                num_exposures, exposure_time, file_name = command
+                for exposure in range(num_exposures):
+                    image = np.random.rand(10, 10)
+                    print('image')
+                    self.update_image.emit(image)
+                    time.sleep(exposure_time)
+
 
 class Ui_Form(object):
     def setupUi(self, Form):
         self.Form = Form
         Form.setObjectName("Form")
         Form.resize(1100, 1000)
-        self.stop = False
-        self.cam_open = True
-        self.paused = True
-        self.TargetName = ""
         
         # Parameters Label
         self.Pt = QtWidgets.QLabel(Form)
@@ -42,16 +55,9 @@ class Ui_Form(object):
         self.IC.setText("Image Capture")
         self.IC.setStyleSheet("font-size: 24px;")
         
-        # Close Application
-        self.Pt = QtWidgets.QLabel(Form)
-        self.Pt.setGeometry(QtCore.QRect(35, 600, 120, 30))
-        self.Pt.setObjectName("Pt")
-        self.Pt.setText("Close App")
-        self.Pt.setStyleSheet("font-size: 24px;")
-        
         # Pause Button
         self.pauseButton = QtWidgets.QPushButton(Form)
-        self.pauseButton.setGeometry(QtCore.QRect(35, 445, 170, 65))
+        self.pauseButton.setGeometry(QtCore.QRect(35, 430, 170, 50))
         self.pauseButton.setObjectName("pause")
         self.pauseButton.setText("Pause")
         self.pauseButton.setStyleSheet("font-size: 16px;")
@@ -60,7 +66,7 @@ class Ui_Form(object):
         
         # Resume Button
         self.resumeButton = QtWidgets.QPushButton(Form)
-        self.resumeButton.setGeometry(QtCore.QRect(35, 360, 170, 65))
+        self.resumeButton.setGeometry(QtCore.QRect(35, 360, 170, 50))
         self.resumeButton.setObjectName("resume")
         self.resumeButton.setText("Start")
         self.resumeButton.clicked.connect(self.resumeCapture)
@@ -68,7 +74,7 @@ class Ui_Form(object):
         
         # Stop Button
         self.stopButton = QtWidgets.QPushButton(Form)
-        self.stopButton.setGeometry(QtCore.QRect(35, 650, 170, 65))
+        self.stopButton.setGeometry(QtCore.QRect(35, 500, 170, 50))
         self.stopButton.setObjectName("stopButton")
         self.stopButton.setText("Close")
         self.stopButton.setStyleSheet("font-size: 16px;")
@@ -86,6 +92,34 @@ class Ui_Form(object):
         self.Target.setObjectName("Target_Name")
         self.Target.setText("None")
         self.Target.setStyleSheet("font-size: 14px;")
+        
+        # Capture Loop Parameters Textbox
+        self.Param = QtWidgets.QTextEdit(Form)
+        self.Param.setGeometry(QtCore.QRect(35, 585, 300, 200))
+        self.Param.setObjectName("Capture Parameters")
+        self.Param.setText("add delay 3\n5 120 HeNe_darks_120s")
+        self.Param.setStyleSheet("font-size: 14px;")
+        
+        # Example Series
+        self.Cap1 = QtWidgets.QPushButton(Form)
+        self.Cap1.setGeometry(QtCore.QRect(35, 810, 140, 60))
+        self.Cap1.setObjectName("cap1")
+        self.Cap1.setText("Example Series")
+        self.Cap1.setStyleSheet("font-size: 14px;")
+        # self.Cap1.clicked.connect(self.Capture Function)
+        
+        
+        
+        # Capture Button
+        self.Cap2 = QtWidgets.QPushButton(Form)
+        self.Cap2.setGeometry(QtCore.QRect(195, 810, 140, 60))
+        self.Cap2.setObjectName("cap1")
+        self.Cap2.setText("Execute Series")
+        self.Cap2.setStyleSheet("font-size: 14px;")
+        self.Cap2.clicked.connect(self.ExecuteSeries)
+        
+        
+        
         
         # Exposure Spinbox
         self.Exposure = QtWidgets.QSpinBox(Form)
@@ -109,7 +143,7 @@ class Ui_Form(object):
         self.Tg.setGeometry(QtCore.QRect(80, 70, 130, 20))
         self.Tg.setObjectName("CTg")
         self.Tg.setText("Current Target:")
-        self.Tg.setStyleSheet("font-size: 16px;")  
+        self.Tg.setStyleSheet("font-size: 16px;")        
 
         # Target Label
         self.Tg = QtWidgets.QLabel(Form)
@@ -117,7 +151,7 @@ class Ui_Form(object):
         self.Tg.setObjectName("Tg")
         self.Tg.setText("Target Name:")
         self.Tg.setStyleSheet("font-size: 16px;")  
-
+        
         # Current Exposure Time Label
         self.exp = QtWidgets.QLabel(Form)
         self.exp.setGeometry(QtCore.QRect(275, 70, 210, 20))
@@ -131,7 +165,7 @@ class Ui_Form(object):
         self.exp.setObjectName("Exp")
         self.exp.setText("Exposure Time (ms):")
         self.exp.setStyleSheet("font-size: 16px;")  
-        
+
         # Current Temperature Label
         self.Temp = QtWidgets.QLabel(Form)
         self.Temp.setGeometry(QtCore.QRect(580, 70, 200, 20))
@@ -178,13 +212,10 @@ class Ui_Form(object):
         self.timer.timeout.connect(self.updateCameraStatus)
         self.timer.timeout.connect(self.TempStatus)
         self.timer.start(500)
-
-        self.stopButton.clicked.connect(self.stopFunction)
-        self.setValues.clicked.connect(self.setFunction)
         
         # Graph
         self.graphWidget = QtWidgets.QWidget(Form)
-        self.graphWidget.setGeometry(QtCore.QRect(350, 290, 700, 700))
+        self.graphWidget.setGeometry(QtCore.QRect(350, 270, 700, 700))
         self.graphLayout = QtWidgets.QVBoxLayout(self.graphWidget)  
         
         # Image Display Label
@@ -200,12 +231,15 @@ class Ui_Form(object):
         self.figure.set_facecolor('#F0F0F0')  # Match PyQt GUI background
         
         # Plot appearance
-        self.ax.set_title("Intensity")
         self.ax.set_xlabel("X-axis")
         self.ax.set_ylabel("Y-axis")
         self.stopButton.clicked.connect(self.stopFunction)
         self.setValues.clicked.connect(self.setFunction)
         
+        self.stop = False
+        self.cam_open = True
+        self.paused = True
+        self.TargetName = ""
 
         # Start the image capture thread
         self.capture_thread = threading.Thread(target=self.capture_images)
@@ -218,64 +252,86 @@ class Ui_Form(object):
         self.stop = True
         self.cam_open = False
         self.Form.close()
-        cam1.close()
-
         
     def updateCameraStatus(self):
         self.CG.clear()
-        if self.stop == False:
-            if -72 < cam1.get_attribute_value('Sensor Temperature Reading') < -68:
-                self.CG.setText("Camera is ready for Image Capture")
-                self.CG.setStyleSheet("color: green; font-size: 14px;")
-            else:
-                self.CG.setText("Camera is not ready for Image Capture")
-                self.CG.setStyleSheet("color: red; font-size: 14px;")
-                
+        if -72 < self.Temperature.value() < -68:
+            self.CG.setText("Camera is ready for Image Capture")
+            self.CG.setStyleSheet("color: green; font-size: 14px;")
+        else:
+            self.CG.setText("Camera is not ready for Image Capture")
+            self.CG.setStyleSheet("color: red; font-size: 14px;")
+
     
     def TempStatus(self):
-        self.TmpS.setText(str(cam1.get_attribute_value('Sensor Temperature Reading')))
+        self.TmpS.setText(str(self.Temperature.value()))
         
     def setFunction(self):
         self.TGS.setText(str(self.Target.text()))
         self.ExpS.setText(str(self.Exposure.value()))
-        
-        cam1.set_attribute_value('Exposure Time', self.Exposure.value())
-        cam1.set_attribute_value('Sensor Temperature Set Point', self.Temperature.value())
+
 
     def capture_images(self):
         while self.cam_open:
             if self.paused:
                 time.sleep(1)
                 continue
-            cam1.setup_acquisition(mode="sequence", nframes=100)  # could be combined with start_acquisition, or kept separate
+            
             if not self.stop:
-                cam1.start_acquisition()
-                cam1.wait_for_frame()  # wait for the next available frame
-                image = cam1.read_oldest_image()  # get the oldest image which hasn't been read yet
-                target = self.Target.text().strip().replace(" ", "_")
-                current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-                filename = f"{target}_{current_time}"    
-                file_path = os.path.join("C:\\Users\\Owner\\PICAM\\images", filename)
-                image.tofile(file_path + '.bin')
+                print(self.TGS.text())
+                print(self.ExpS.text())
+                print(self.Temperature.value())
+                
+
+                image = np.random.rand(10, 10)
                 self.ax.imshow(image)
-                self.ax.set_title("Intensity")
-                self.ax.set_xlabel("X-axis")
-                self.ax.set_ylabel("Y-axis")
                 self.canvas.draw()
-                cam1.stop_acquisition()
+                time.sleep(0.5)
+
+                
             else:
                 break
+            time.sleep(0.2)
 
     def pauseCapture(self):
         self.paused = True
         self.pauseButton.setEnabled(False)
         self.resumeButton.setEnabled(True)
+        
+    def ExecuteSeries(self):
+        input_string = self.Param.toPlainText()
+        series = []
+    
+        # Parse the input string (same as your original logic)
+        rows = input_string.splitlines()
+        for row in rows:
+            parts = row.split()
+            if not parts:
+                continue
+    
+            if parts[0] == 'add' and parts[1] == 'delay':
+                series.append([float(parts[2])])
+            else:
+                num_exposures = int(parts[0])
+                exposure_time = float(parts[1])
+                file_name = parts[2]
+                series.append([num_exposures, exposure_time, file_name])
+    
+        # Create and start the thread
+        self.capture_thread = CaptureSeriesThread(series)
+        self.capture_thread.update_image.connect(self.display_image)
+        self.capture_thread.start()
+    
+    def display_image(self, image):
+        self.ax.imshow(image)
+        self.canvas.draw()
+    
 
     def resumeCapture(self):
         self.paused = False
         self.resumeButton.setEnabled(False)
         self.pauseButton.setEnabled(True)
-
+        
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
         Form.setWindowTitle(_translate("Form", "Camera Operation"))
