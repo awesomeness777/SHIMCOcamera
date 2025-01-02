@@ -284,8 +284,7 @@ class Ui_Form(object):
                 continue
     
             if not self.stop:
-                exposure_time = int(self.Exposure.value()) / 1000
-                print('image')
+                exposure_time = int(self.ExpS.text())/1000
                 image = np.random.rand(50, 50)
                 self.image_handle.set_data(image)
                 self.canvas.draw_idle()
