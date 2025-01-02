@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jan  1 16:34:35 2025
+Created on Wed Jan  1 19:28:32 2025
 
 @author: hayde
 """
@@ -11,12 +11,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import threading
 import time
-from PyQt5.QtCore import QThread, pyqtSignal
 import matplotlib
+import datetime
+import os
 
-# Prevent additional Figure Creation
+# Eliminate Extra Figure
 matplotlib.use('Qt5Agg')
 plt.ioff() 
+
+# Initialize Camera
+from PIXIS_PICAM import *
 
 
 
@@ -32,12 +36,19 @@ class CaptureSeriesThread(QThread):
             if len(command) == 1:
                 time.sleep(command[0])
             else:
-                num_exposures, exposure_time, file_name = command
+                num_exposures, exposure_time, target_name = command
                 for exposure in range(num_exposures):
-                    image = np.random.rand(50, 50)
+                    cam1.set_attribute_value('Exposure Time', int(exposure_time))
+                    image = cam1.grab(1)
                     self.update_image.emit(image)
-                    sleep_time = exposure_time/1000
-                    time.sleep(sleep_time)
+                    
+                    # File Saving
+                    target = target_name.strip().replace(" ", "_")
+                    current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                    filename = f"{target}_{current_time}"    
+                    file_path = os.path.join("C:\\Users\\Owner\\PICAM\\images", filename)
+                    image.tofile(file_path + '.bin')
+                    
 
 class Ui_Form(object):
     def setupUi(self, Form):
@@ -253,20 +264,24 @@ class Ui_Form(object):
         
     def updateCameraStatus(self):
         self.CG.clear()
-        if -72 < self.Temperature.value() < -68:
-            self.CG.setText("Camera is ready for Image Capture")
-            self.CG.setStyleSheet("color: green; font-size: 14px;")
-        else:
-            self.CG.setText("Camera is not ready for Image Capture")
-            self.CG.setStyleSheet("color: red; font-size: 14px;")
+        if self.stop == False:
+            if -72 < cam1.get_attribute_value('Sensor Temperature Reading') < -68:
+                self.CG.setText("Camera is ready for Image Capture")
+                self.CG.setStyleSheet("color: green; font-size: 14px;")
+            else:
+                self.CG.setText("Camera is not ready for Image Capture")
+                self.CG.setStyleSheet("color: red; font-size: 14px;")
 
     
     def TempStatus(self):
-        self.TmpS.setText(str(self.Temperature.value()))
+        self.TmpS.setText(str(cam1.get_attribute_value('Sensor Temperature Reading')))
         
     def setFunction(self):
         self.TGS.setText(str(self.Target.text()))
         self.ExpS.setText(str(self.Exposure.value()))
+        
+        cam1.set_attribute_value('Exposure Time', self.Exposure.value())
+        cam1.set_attribute_value('Sensor Temperature Set Point', self.Temperature.value())
 
     
     def capture_images(self):
@@ -277,19 +292,30 @@ class Ui_Form(object):
                                                cmap='Blues',
                                                vmin=0, vmax=1)
             self.canvas.draw_idle()
-    
+            
         while self.cam_open:
             if self.paused:
                 time.sleep(1)
                 continue
     
             if not self.stop:
-                exposure_time = int(self.Exposure.value()) / 1000
-                print('image')
-                image = np.random.rand(50, 50)
-                self.image_handle.set_data(image)
-                self.canvas.draw_idle()
-                time.sleep(exposure_time)
+                exposure_time = int(self.Exposure.value()) 
+                cam1.set_attribute_value('Exposure Time', exposure_time)
+                with PrincetonInstruments.PicamCamera('0809080002') as cam1:
+                    cam1.start_acquisition()
+                    while True:
+                        cam1.wait_for_frame()  
+                        image = cam1.read_oldest_image()
+                        self.image_handle.set_data(image)
+                        self.canvas.draw_idle()
+                        
+                        # File Saving
+                        target = self.Target.text().strip().replace(" ", "_")
+                        current_time = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+                        filename = f"{target}_{current_time}"    
+                        file_path = os.path.join("C:\\Users\\Owner\\PICAM\\images", filename)
+                        image.tofile(file_path + '.bin')
+                
             else:
                 break
     
