@@ -299,7 +299,7 @@ class Ui_Form(object):
                 continue
     
             if not self.stop:
-                exposure_time = int(self.Exposure.value()) 
+                exposure_time = int(self.ExpS.value()) 
                 cam1.set_attribute_value('Exposure Time', exposure_time)
                 with PrincetonInstruments.PicamCamera('0809080002') as cam1:
                     cam1.start_acquisition()
