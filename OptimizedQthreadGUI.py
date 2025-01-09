@@ -100,16 +100,16 @@ class Ui_Form(object):
         self.Param = QtWidgets.QTextEdit(Form)
         self.Param.setGeometry(QtCore.QRect(35, 585, 300, 200))
         self.Param.setObjectName("Capture Parameters")
-        self.Param.setText("add delay 3\n5 120 HeNe_darks_120s")
+        self.Param.setText("add delay 3\n5 1200 HeNe_darks_1200ms")
         self.Param.setStyleSheet("font-size: 14px;")
         
         # Example Series
-        self.Cap1 = QtWidgets.QPushButton(Form)
-        self.Cap1.setGeometry(QtCore.QRect(35, 810, 140, 60))
-        self.Cap1.setObjectName("cap1")
-        self.Cap1.setText("Example Series")
-        self.Cap1.setStyleSheet("font-size: 14px;")
-        # self.Cap1.clicked.connect(self.Capture Function)
+        self.ExmplS = QtWidgets.QPushButton(Form)
+        self.ExmplS.setGeometry(QtCore.QRect(35, 810, 140, 60))
+        self.ExmplS.setObjectName("cap1")
+        self.ExmplS.setText("Example Series")
+        self.ExmplS.setStyleSheet("font-size: 14px;")
+        self.ExmplS.clicked.connect(self.ExampleSeries)
         
         # Capture Button
         self.Cap2 = QtWidgets.QPushButton(Form)
@@ -208,7 +208,6 @@ class Ui_Form(object):
         # Timer for live Updates
         self.timer = QtCore.QTimer(Form)
         self.timer.timeout.connect(self.updateCameraStatus)
-        self.timer.timeout.connect(self.TempStatus)
         self.timer.start(500)
         
         # Graph
@@ -226,7 +225,7 @@ class Ui_Form(object):
         self.ax = self.figure.add_subplot(111) 
         self.canvas = FigureCanvas(self.figure)
         self.graphLayout.addWidget(self.canvas)        
-        self.figure.set_facecolor('#F0F0F0')  # Match PyQt GUI background
+        self.figure.set_facecolor('#F0F0F0')
         
         # Plot appearance
         self.ax.set_xlabel("X-axis")
@@ -253,7 +252,7 @@ class Ui_Form(object):
         
     def updateCameraStatus(self):
         self.CG.clear()
-        if -72 < self.Temperature.value() < -68:
+        if -72 <= int(self.TmpS.text()) <= -68:
             self.CG.setText("Camera is ready for Image Capture")
             self.CG.setStyleSheet("color: green; font-size: 14px;")
         else:
@@ -267,7 +266,7 @@ class Ui_Form(object):
     def setFunction(self):
         self.TGS.setText(str(self.Target.text()))
         self.ExpS.setText(str(self.Exposure.value()))
-
+        self.TmpS.setText(str(self.Temperature.value()))
     
     def capture_images(self):
         if not hasattr(self, 'image_handle'):
@@ -322,6 +321,9 @@ class Ui_Form(object):
         self.capture_thread = CaptureSeriesThread(series)
         self.capture_thread.update_image.connect(self.display_image)
         self.capture_thread.start()
+        
+    def ExampleSeries(self):
+        self.Param.setText("add delay 3\n5 1200 HeNe_darks_1200ms")
     
     def display_image(self, image):
         if not hasattr(self, 'image_handle'):
