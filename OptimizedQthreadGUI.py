@@ -36,7 +36,7 @@ class CaptureSeriesThread(QThread):
                 for exposure in range(num_exposures):
                     image = np.random.rand(50, 50)
                     self.update_image.emit(image)
-                    sleep_time = exposure_time/1000
+                    sleep_time = exposure_time
                     time.sleep(sleep_time)
 
 class Ui_Form(object):
@@ -100,7 +100,7 @@ class Ui_Form(object):
         self.Param = QtWidgets.QTextEdit(Form)
         self.Param.setGeometry(QtCore.QRect(35, 585, 300, 200))
         self.Param.setObjectName("Capture Parameters")
-        self.Param.setText("add delay 3\n5 1200 HeNe_darks_1200ms")
+        self.Param.setText("add delay 3\n5 10 name")
         self.Param.setStyleSheet("font-size: 14px;")
         
         # Example Series
@@ -323,7 +323,7 @@ class Ui_Form(object):
         self.capture_thread.start()
         
     def ExampleSeries(self):
-        self.Param.setText("add delay 3\n5 1200 HeNe_darks_1200ms")
+        self.Param.setText("add delay 3\n5 10 HeNe_darks_10_sec")
     
     def display_image(self, image):
         if not hasattr(self, 'image_handle'):
