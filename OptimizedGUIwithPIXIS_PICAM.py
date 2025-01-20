@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Jan  1 19:28:32 2025
+Author: Hayden Marchinek
 
-@author: hayde
+Description: 
+This script launches a GUI written with PyQt5 used to operate a PIXIS 1024 camera.
+Users are able to change image capture parameters and take images using either a 
+continuous capture loop or a pre-determined capture series.
 """
 
 from PyQt5 import QtCore, QtWidgets
@@ -23,7 +26,7 @@ plt.ioff()
 from PIXIS_PICAM import *
 
 
-
+# 
 class CaptureSeriesThread(QThread):
     update_image = pyqtSignal(np.ndarray)
 
@@ -38,6 +41,8 @@ class CaptureSeriesThread(QThread):
             else:
                 num_exposures, exposure_time, target_name = command
                 for exposure in range(num_exposures):
+                    
+                    # Image Capture
                     cam1.set_attribute_value('Exposure Time', int(exposure_time))
                     image = cam1.grab(1)
                     self.update_image.emit(image)
@@ -111,16 +116,17 @@ class Ui_Form(object):
         self.Param = QtWidgets.QTextEdit(Form)
         self.Param.setGeometry(QtCore.QRect(35, 585, 300, 200))
         self.Param.setObjectName("Capture Parameters")
-        self.Param.setText("add delay 3\n5 120 HeNe_darks_120s")
+        self.Param.setText("add delay 3\n5 1200 HeNe_darks_120ms")
         self.Param.setStyleSheet("font-size: 14px;")
         
         # Example Series
-        self.Cap1 = QtWidgets.QPushButton(Form)
-        self.Cap1.setGeometry(QtCore.QRect(35, 810, 140, 60))
-        self.Cap1.setObjectName("cap1")
-        self.Cap1.setText("Example Series")
-        self.Cap1.setStyleSheet("font-size: 14px;")
-        # self.Cap1.clicked.connect(self.Capture Function)
+        self.ExmplS = QtWidgets.QPushButton(Form)
+        self.ExmplS.setGeometry(QtCore.QRect(35, 810, 140, 60))
+        self.ExmplS.setObjectName("cap1")
+        self.ExmplS.setText("Example Series")
+        self.ExmplS.setStyleSheet("font-size: 14px;")
+        self.ExmplS.clicked.connect(self.ExampleSeries)
+        
         
         # Capture Button
         self.Cap2 = QtWidgets.QPushButton(Form)
@@ -237,7 +243,7 @@ class Ui_Form(object):
         self.ax = self.figure.add_subplot(111) 
         self.canvas = FigureCanvas(self.figure)
         self.graphLayout.addWidget(self.canvas)        
-        self.figure.set_facecolor('#F0F0F0')  # Match PyQt GUI background
+        self.figure.set_facecolor('#F0F0F0')
         
         # Plot appearance
         self.ax.set_xlabel("X-axis")
@@ -304,6 +310,8 @@ class Ui_Form(object):
                 with PrincetonInstruments.PicamCamera('0809080002') as cam1:
                     cam1.start_acquisition()
                     while True:
+                        
+                        #Image Capture
                         cam1.wait_for_frame()  
                         image = cam1.read_oldest_image()
                         self.image_handle.set_data(image)
@@ -349,6 +357,9 @@ class Ui_Form(object):
         self.capture_thread = CaptureSeriesThread(series)
         self.capture_thread.update_image.connect(self.display_image)
         self.capture_thread.start()
+    
+    def ExampleSeries(self):
+        self.Param.setText("add delay 3\n5 10 HeNe_darks_10_sec")
     
     def display_image(self, image):
         if not hasattr(self, 'image_handle'):
